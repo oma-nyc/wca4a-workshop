@@ -19,16 +19,16 @@
 
 ### Task the First
 
-1. Detect the OS, DB, and MW type by using ansible facts.
+1. Detect the operating system, database, and middleware type by using ansible facts.
 2. Fail the playbook if AIX version is below a specified minimum (variable: min_aix_version) & Linux kernel version or OS version if below a specified minimum (variables: min_linux_kernel, min_linux_version)
-3. Gather OS version, kernel version
-4. Collect DB version, uptime, and instance name
-5. Output MW components versioning and instance name
-6. Output results grouped by OS, DB, and MW
+3. Gather the operating system version and kernel version
+4. Collect the database version, uptime, and instance name
+5. Output the middleware components, version, and instance name
+6. Output results grouped by operating system, database, and middleware
 
 ### Task the Second
 
-1. Check for CD, ST, SFG and add any additional MFT and AFT listed in a variable (mft_components or aft_components) 
+1. Check for running instances of Connect:Direct, SecureTransport, Sterling File Gateway, and add any additional Managed File Transfer and Advance File Transfer listed in a variable (mft_components or aft_components) 
 2. Check if the components exist by checking for installed packages 
 3. Check if processes are running by pgrep command 
 4. If component is found, gracefully stop the related services
