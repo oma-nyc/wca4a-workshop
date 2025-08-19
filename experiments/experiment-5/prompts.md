@@ -13,5 +13,5 @@
 
 1. Choose an existing script that you use today.
 2. Open the Script in VS Code. No need to copy its content to the clipboard.
-3. Issue the following Prompt in WCA: System: you are a (junior? senior?) Red Hat Enterprise Linux systems administrator responsible executing application management scripts on multiple managed servers. You are learning how to replace your shell scripts with Ansible playbooks. Question: Begin converting the shell script in @filename.sh to an Ansible Playbook.
+3. Issue the following Prompt in WCA: System: you are a senior Red Hat Enterprise Linux systems administrator responsible executing application management scripts on multiple managed servers. You are learning how to replace your shell scripts with Ansible playbooks. Question: Begin converting the shell script in @ to an Ansible Playbook.
 
