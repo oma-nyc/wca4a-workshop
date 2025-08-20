@@ -1,0 +1,32 @@
+---
+- name: Backup and Restore Cisco IOS Configuration
+  hosts: ios_devices
+  gather_facts: no
+  vars:
+    backup_dir: "/path/to/backup/directory"  # Change to your desired backup directory path
+    restore_config: false  # Set to true to enable restoration
+
+  tasks:
+    - name: Create backup directory if it doesn't exist
+      ansible.builtin.file:
+        path: "{{ backup_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Backup running-config to a file
+      ansible.builtin.copy:
+        content: "{{ lookup('backrefs') }}"  # Use backrefs to capture output
+        dest: "{{ backup_dir }}/{{ inventory_hostname }}_{{ ansible_date_time.iso8601 }}.cfg"
+        mode: '0644'
+
+    - name: Display backup file path (for verification)
+      ansible.builtin.debug:
+        msg: "Backup file created at: {{ backup_dir }}/{{ inventory_hostname }}_{{ ansible_date_time.iso8601 }}.cfg"
+
+    - name: Restore configuration from backup (optional)
+      cisco.ios.ios_config: 
+        commands:
+          - source {{ backup_dir }}/{{ inventory_hostname }}_{{ ansible_date_time.iso8601 }}.cfg
+        backup: yes  # Ensure a backup is taken before applying changes
+      when: restore_config
+
